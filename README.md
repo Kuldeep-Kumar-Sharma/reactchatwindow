@@ -1,2 +1,2 @@
 # reactchatwindow
-just simple application in react with sockets
+just simple application in react with sockets - test
