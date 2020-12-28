@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import { Route, Switch, withRouter, Redirect } from "react-router-dom";
-import Layout from "./Containers/Layout/Layout ";
+//import { Route, Switch, withRouter, Redirect } from "react-router-dom";
+import Layout from "./Containers/Layout/Layout";
 
 class App extends Component {
   render() {
     // let routes = (
     //   <Switch>
-    //     {/* <Route path="/players" component={}></Route>
-    //     <Route path="/" component={}></Route> */}
+    //     <Route path="/auth" component={asyncAuth} />
+    //     <Route path="/" exact component={BurgerBuilder} />
+    //     <Redirect to="/" />
     //   </Switch>
-    // );
-    // {routes}
+    // );{routes}
+
     return (
       <div>
         <Layout></Layout>
@@ -18,5 +19,5 @@ class App extends Component {
     );
   }
 }
-//withRouter(
+
 export default App;
