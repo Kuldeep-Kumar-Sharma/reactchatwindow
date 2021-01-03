@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Aux from "../../Containers/Auxiliary/Auxiliary";
 import classes from "./Board.module.css";
+import Button from "../UI/Button/Button";
 
 class Board extends Component {
   render() {
@@ -8,6 +9,7 @@ class Board extends Component {
       <Aux>
         <div className={classes.gameheader}>
           <p>Classic game for two players. O always starts.</p>
+          <Button>Start the Game</Button>
           <p className={classes.current}>
             Current player: <span id="current"></span>
           </p>
