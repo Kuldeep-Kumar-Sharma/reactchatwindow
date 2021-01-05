@@ -8,7 +8,7 @@ class Board extends Component {
   render() {
     return (
       <Aux>
-        <InputModal></InputModal>
+        <InputModal />
         <div className={classes.gameheader}>
           <p>Classic game for two players. O always starts.</p>
           <Button>Start the Game</Button>
