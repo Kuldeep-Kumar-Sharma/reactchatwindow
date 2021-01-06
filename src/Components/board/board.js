@@ -5,13 +5,35 @@ import Button from "../UI/Button/Button";
 import InputModal from "../InputModal/InputModal";
 
 class Board extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPlayerInputModal: false,
+    };
+  }
+
+  onStartGame = () => {
+    this.setState({
+      showPlayerInputModal: true,
+    });
+  };
+
+  onEndGame = () => {
+    this.setState({
+      showPlayerInputModal: false,
+    });
+  };
+
   render() {
     return (
       <Aux>
-        <InputModal />
+        <InputModal
+          show={this.state.showPlayerInputModal}
+          modalClosed={this.state.showPlayerInputModal}
+        />
         <div className={classes.gameheader}>
           <p>Classic game for two players. O always starts.</p>
-          <Button>Start the Game</Button>
+          <Button clicked={this.onStartGame}>Start the Game</Button>
           <p className={classes.current}>
             Current player: <span id="current"></span>
           </p>
