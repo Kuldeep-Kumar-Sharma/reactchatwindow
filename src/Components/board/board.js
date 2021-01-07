@@ -18,7 +18,7 @@ class Board extends Component {
     });
   };
 
-  onEndGame = () => {
+  onCapturePlayerDetailClose = () => {
     this.setState({
       showPlayerInputModal: false,
     });
@@ -30,6 +30,7 @@ class Board extends Component {
         <InputModal
           show={this.state.showPlayerInputModal}
           modalClosed={this.state.showPlayerInputModal}
+          onClose={this.onCapturePlayerDetailClose}
         />
         <div className={classes.gameheader}>
           <p>Classic game for two players. O always starts.</p>
