@@ -14,9 +14,7 @@ class InputModal extends Component {
           Enter the Secound Player Name:
           <Input elementType="input" />
           <Button>Begin</Button>
-          <Button btnType="Danger" clicked={this.props.onClose}>
-            Close
-          </Button>
+          <Button clicked={this.props.onClose}>Close</Button>
         </Modal>
       </Aux>
     );
