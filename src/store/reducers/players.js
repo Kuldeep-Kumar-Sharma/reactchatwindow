@@ -9,10 +9,11 @@ const initialState = {
   winner: "",
 };
 
-const reducer = (state = initialState, action) => {
+const playerReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.INPUT_PLAYER_DETAILS:
-      return {
+      console.log(action);
+      let updatedState = {
         ...state,
         players: {
           ...state.players,
@@ -21,6 +22,9 @@ const reducer = (state = initialState, action) => {
         score: state.score,
         winner: state.winner,
       };
+      console.log(updatedState);
+
+      return updatedState;
     case actionTypes.ADD_SCORE:
       return {
         ...state,
@@ -36,7 +40,7 @@ const reducer = (state = initialState, action) => {
         players: {
           ...state.players,
         },
-        score: sate.score,
+        score: state.score,
         winner: action.winner,
       };
     default:
@@ -44,4 +48,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default playerReducer;

@@ -1,8 +1,9 @@
 import * as actionTypes from "./actionTypes";
 
-export const inputPlayerDetails = () => {
+export const inputPlayerDetails = (plyers) => {
   return {
     type: actionTypes.INPUT_PLAYER_DETAILS,
+    players: plyers,
   };
 };
 // export const authSuccess = (token, userId) => {

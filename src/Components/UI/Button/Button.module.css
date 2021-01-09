@@ -3,7 +3,8 @@
 }
 
 .Danger {
-  background-color: #ff00008c;
+  margin-left: 3%;
+  background-color: #ff00008c !important;
 }
 
 .Button {
