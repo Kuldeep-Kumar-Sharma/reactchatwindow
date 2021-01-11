@@ -12,15 +12,19 @@ const initialState = {
 const playerReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.INPUT_PLAYER_DETAILS:
-      console.log(action);
+      let players = {
+        ...action.players,
+      };
+      console.log(players);
       let updatedState = {
         ...state,
+        // players: {
+        //   ...state.players,
+        //   [action.players]: state.players[action.players],
+        // },
         players: {
-          ...state.players,
-          [action.players]: state.players[action.players],
+          ...action.players,
         },
-        score: state.score,
-        winner: state.winner,
       };
       console.log(updatedState);
 
