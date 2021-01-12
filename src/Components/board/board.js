@@ -3,6 +3,8 @@ import Aux from "../../Containers/Auxiliary/Auxiliary";
 import classes from "./Board.module.css";
 import Button from "../UI/Button/Button";
 import InputModal from "../InputModal/InputModal";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
 
 class Board extends Component {
   constructor(props) {
@@ -31,6 +33,7 @@ class Board extends Component {
           show={this.state.showPlayerInputModal}
           modalClosed={this.state.showPlayerInputModal}
           onClose={this.onCapturePlayerDetailClose}
+          onPlayersAdded={this.props.onPlayersAdded}
         />
         <div className={classes.gameheader}>
           <p>Classic game for two players. O always starts.</p>
@@ -55,4 +58,18 @@ class Board extends Component {
   }
 }
 
-export default Board;
+const mapStateToProps = (state) => {
+  return {
+    players: state.players,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPlayersAdded: (players) => {
+      dispatch(actions.inputPlayerDetails(players));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

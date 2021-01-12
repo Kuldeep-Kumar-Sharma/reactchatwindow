@@ -5,10 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-// applyMiddleware, combineReducers, combine
 import playerReducer from "./store/reducers/players";
 const playerreducer = createStore(playerReducer);
-//const gameReducer = createStore(gameReducer);
 
 ReactDOM.render(
   <Provider store={playerreducer}>
