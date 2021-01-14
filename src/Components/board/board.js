@@ -10,8 +10,9 @@ class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      moves: [],
+      moves: new Array(9).fill(""),
       showPlayerInputModal: false,
+      currentPlayer: this.props.players.first,
     };
   }
 
@@ -27,13 +28,34 @@ class Board extends Component {
     });
   };
 
-  onCaptureMove = () => {
-    this.setState({
-      showPlayerInputModal: false,
+  onCaptureMove = (index) => {
+    this.setState((prevState) => {
+      let nextPlayer = "";
+      let move = "X;";
+      if (this.state.currentPlayer === this.props.players.first) {
+        nextPlayer = this.props.players.secound;
+        move = "O";
+      } else {
+        move = "X";
+        nextPlayer = this.props.players.first;
+      }
+
+      const newItems = [...prevState.moves];
+      newItems[index] = move;
+      return {
+        ...prevState,
+        currentPlayer: nextPlayer,
+        moves: newItems,
+      };
     });
+    console.log(this.state.moves);
   };
 
   render() {
+    let boardMap = [];
+    for (var i = 0; i < 9; i++) {
+      boardMap.push({ key: i });
+    }
     return (
       <Aux>
         <InputModal
@@ -45,19 +67,19 @@ class Board extends Component {
           <p>Classic game for two players. O always starts.</p>
           <Button clicked={this.onStartGame}>Start the Game</Button>
           <p className={classes.current}>
-            Current player: <span id="current">{this.props.players.first}</span>
+            Current player: <span id="current">{this.state.currentPlayer}</span>
           </p>
         </div>
         <div className={classes.board}>
-          <div className={classes.field}>1</div>
-          <div className={classes.field}>2</div>
-          <div className={classes.field}>3</div>
-          <div className={classes.field}>4</div>
-          <div className={classes.field}>5</div>
-          <div className={classes.field}>6</div>
-          <div className={classes.field}>7</div>
-          <div className={classes.field}>8</div>
-          <div className={classes.field}>9</div>
+          {boardMap.map((el, index) => (
+            <div
+              key={index}
+              onClick={() => this.onCaptureMove(el.key)}
+              className={classes.field}
+            >
+              {this.state.moves[el.key]}
+            </div>
+          ))}
         </div>
       </Aux>
     );
