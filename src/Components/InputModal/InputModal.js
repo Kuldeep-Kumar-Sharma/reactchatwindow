@@ -97,7 +97,7 @@ class InputModal extends Component {
       });
     }
     let form = (
-      <form onSubmit={this.orderHandler}>
+      <Aux>
         {formElementsArray.map((formElement) => (
           <Input
             key={formElement.id}
@@ -111,14 +111,17 @@ class InputModal extends Component {
           />
         ))}
         <Button
-          clicked={() => this.props.onPlayersAdded(this.state.playersForm)}
+          clicked={() => {
+            this.props.onPlayersAdded(this.state.playersForm);
+            this.props.onClose();
+          }}
         >
           Begin
         </Button>
         <Button btnType="Danger" clicked={this.props.onClose}>
           Close
         </Button>
-      </form>
+      </Aux>
     );
 
     return (
