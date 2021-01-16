@@ -1,1 +1,1 @@
-export { inputPlayerDetails } from "./players";
+export { inputPlayerDetails, addScoreAndWinner } from "./players";

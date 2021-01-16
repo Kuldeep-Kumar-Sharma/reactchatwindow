@@ -10,3 +10,10 @@ export const inputPlayerDetails = (plyers) => {
     players: updatingPlayersObject,
   };
 };
+
+export const addScoreAndWinner = (wn) => {
+  return {
+    type: actionTypes.ADD_WINNER,
+    winner: wn,
+  };
+};
