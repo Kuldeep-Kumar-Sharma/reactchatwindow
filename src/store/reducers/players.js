@@ -5,7 +5,6 @@ const initialState = {
     first: "",
     secound: "",
   },
-  score: 0,
   winner: "",
 };
 
@@ -17,16 +16,6 @@ const playerReducer = (state = initialState, action) => {
         players: {
           ...action.players,
         },
-        score: state.score,
-        winner: state.winner,
-      };
-    case actionTypes.ADD_SCORE:
-      return {
-        ...state,
-        players: {
-          ...state.players,
-        },
-        score: action.score,
         winner: state.winner,
       };
     case actionTypes.ADD_WINNER:
@@ -35,7 +24,6 @@ const playerReducer = (state = initialState, action) => {
         players: {
           ...state.players,
         },
-        score: state.score,
         winner: action.winner,
       };
     default:
