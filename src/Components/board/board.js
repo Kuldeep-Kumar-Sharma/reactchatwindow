@@ -124,7 +124,6 @@ class Board extends Component {
     });
     if (this.checkWinner()) {
       this.props.onWinner(this.state.currentPlayer);
-      console.log("Winner");
       this.setState((prevState) => {
         return {
           ...prevState,
