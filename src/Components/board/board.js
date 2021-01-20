@@ -3,7 +3,7 @@ import Aux from "../../Containers/Auxiliary/Auxiliary";
 import classes from "./Board.module.css";
 import Button from "../UI/Button/Button";
 import InputModal from "../InputModal/InputModal";
-import Modal from "../../Components/UI/Modal/Modal";
+import WinnerModal from "../WinnerModal/WinnerModal";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 
@@ -14,13 +14,16 @@ class Board extends Component {
       moves: new Array(9).fill(""),
       showPlayerInputModal: false,
       currentPlayer: this.props.players.first,
+      started: false,
       finished: false,
     };
   }
 
   onStartGame = () => {
     this.setState({
+      ...this.state,
       showPlayerInputModal: true,
+      started: true,
     });
   };
 
@@ -148,11 +151,23 @@ class Board extends Component {
     });
   };
 
+  onStartWarning = () => {
+    this.onStartGame();
+  };
+
   render() {
     let boardMap = [];
     for (var i = 0; i < 9; i++) {
       boardMap.push({ key: i });
     }
+
+    let currentPlayer = this.state.started ? (
+      <p>
+        Current player: <span id="current">{this.state.currentPlayer}</span>
+      </p>
+    ) : (
+      ""
+    );
 
     return (
       <Aux>
@@ -161,22 +176,33 @@ class Board extends Component {
           onClose={this.onCapturePlayerDetailClose}
           onPlayersAdded={this.props.onPlayersAdded}
         />
-        <Modal show={this.state.finished}>
-          <b>Winner is : {this.props.winner}</b>
-          <Button clicked={this.onResetGame}>OK!</Button>
-        </Modal>
+        <WinnerModal
+          show={this.state.finished}
+          winner={this.state.winner}
+          onResetGame={this.onResetGame}
+        />
+
         <div className={classes.gameheader}>
           <p>Classic game for two players. O always starts.</p>
           <Button clicked={this.onStartGame}>Start the Game</Button>
-          <p className={classes.current}>
-            Current player: <span id="current">{this.state.currentPlayer}</span>
-          </p>
+          <p className={classes.current}>{currentPlayer}</p>
         </div>
-        <div className={classes.board}>
+        <div
+          className={classes.board}
+          style={
+            this.state.started
+              ? { backgroundColor: "#000" }
+              : { backgroundColor: "#eae6e6" }
+          }
+        >
           {boardMap.map((el, index) => (
             <div
               key={index}
-              onClick={() => this.onCaptureMove(el.key)}
+              onClick={
+                this.state.started
+                  ? () => this.onCaptureMove(el.key)
+                  : () => this.onStartWarning()
+              }
               className={classes.field}
             >
               {this.state.moves[el.key]}
