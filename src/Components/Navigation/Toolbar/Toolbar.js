@@ -8,8 +8,8 @@ const toolbar = (props) => (
   <header className={classes.Toolbar}>
     <div className={classes.Logo}>
       <Logo />
-      <h6 className={classes.title}>Tic Tac Toe</h6>
     </div>
+    <h4 className={classes.title}>Tic Tac Toe</h4>
     <nav className={classes.DesktopOnly}>
       <NavigationItems />
     </nav>
