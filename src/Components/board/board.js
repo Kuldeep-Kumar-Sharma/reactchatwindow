@@ -146,6 +146,7 @@ class Board extends Component {
         ...prevState,
         currentPlayer: "",
         moves: [],
+        started: false,
         finished: false,
       };
     });
