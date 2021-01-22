@@ -1,1 +1,5 @@
-export { inputPlayerDetails, addScoreAndWinner } from "./players";
+export {
+  inputPlayerDetails,
+  addScoreAndWinner,
+  addToAllPlayersAndClearCurrentPlayer,
+} from "./players";

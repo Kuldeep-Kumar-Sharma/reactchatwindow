@@ -1,11 +1,14 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  players: {
-    first: "",
-    secound: "",
+  allPlayers: [],
+  currentPlayer: {
+    players: {
+      first: "",
+      secound: "",
+    },
+    winner: "",
   },
-  winner: "",
 };
 
 const playerReducer = (state = initialState, action) => {
@@ -13,18 +16,40 @@ const playerReducer = (state = initialState, action) => {
     case actionTypes.INPUT_PLAYER_DETAILS:
       return {
         ...state,
-        players: {
-          ...action.players,
+        currentPlayer: {
+          ...state.currentPlayer,
+          players: {
+            ...action.players,
+          },
+          winner: state.winner,
         },
-        winner: state.winner,
       };
     case actionTypes.ADD_WINNER:
       return {
         ...state,
-        players: {
-          ...state.players,
+        currentPlayer: {
+          ...state.currentPlayer,
+          players: {
+            ...state.players,
+          },
+          winner: action.winner,
         },
-        winner: action.winner,
+      };
+    case actionTypes.ADD_TO_ALL_PLAYERS_AND_CLEAR_CURRENT_PLAYER:
+      console.log(state.allPlayers);
+      let updatedPlayers = state.allPlayers;
+      console.log(updatedPlayers);
+      updatedPlayers.push(state.currentPlayer);
+      return {
+        currentPlayer: {
+          ...state.currentPlayer,
+          players: {
+            first: "",
+            secound: "",
+          },
+          winner: "",
+          allPlayers: updatedPlayers,
+        },
       };
     default:
       return state;

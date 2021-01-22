@@ -17,3 +17,9 @@ export const addScoreAndWinner = (wn) => {
     winner: wn,
   };
 };
+
+export const addToAllPlayersAndClearCurrentPlayer = () => {
+  return {
+    type: actionTypes.ADD_TO_ALL_PLAYERS_AND_CLEAR_CURRENT_PLAYER,
+  };
+};
