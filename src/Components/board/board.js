@@ -127,6 +127,7 @@ class Board extends Component {
     });
     if (this.checkWinner()) {
       this.props.onWinner(this.state.currentPlayer);
+      this.props.onEndGame();
       this.setState((prevState) => {
         return {
           ...prevState,
@@ -217,7 +218,7 @@ class Board extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    players: state.players,
+    players: state.currentPlayer.players,
     winner: state.winner,
   };
 };
@@ -229,6 +230,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onWinner: (winner) => {
       dispatch(actions.addScoreAndWinner(winner));
+    },
+    onEndGame: () => {
+      dispatch(actions.addToAllPlayersAndClearCurrentPlayer());
     },
   };
 };
