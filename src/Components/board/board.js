@@ -132,7 +132,7 @@ class Board extends Component {
         return {
           ...prevState,
           currentPlayer: "",
-          moves: [],
+          moves: new Array(9).fill(""),
           finished: true,
         };
       });
