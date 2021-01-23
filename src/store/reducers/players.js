@@ -14,6 +14,7 @@ const initialState = {
 const playerReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.INPUT_PLAYER_DETAILS:
+      console.log(state.allPlayers);
       return {
         ...state,
         currentPlayer: {
@@ -23,22 +24,22 @@ const playerReducer = (state = initialState, action) => {
           },
           winner: state.winner,
         },
+        allPlayers: [...state.allPlayers],
       };
     case actionTypes.ADD_WINNER:
       return {
         ...state,
         currentPlayer: {
-          ...state.currentPlayer,
           players: {
-            ...state.players,
+            first: state.currentPlayer.players.first,
+            secound: state.currentPlayer.players.secound,
           },
           winner: action.winner,
+          allPlayers: [...state.allPlayers],
         },
       };
     case actionTypes.ADD_TO_ALL_PLAYERS_AND_CLEAR_CURRENT_PLAYER:
-      console.log(state.allPlayers);
       let updatedPlayers = state.allPlayers;
-      console.log(updatedPlayers);
       updatedPlayers.push(state.currentPlayer);
       return {
         currentPlayer: {
