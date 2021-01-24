@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import Aux from "../../Containers/Auxiliary/Auxiliary";
 import Toolbar from "../../Components/Navigation/Toolbar/Toolbar";
-import Board from "../../Components/Board/Board";
+import classes from "./Layout.module.css";
 
 class Layout extends Component {
   render() {
     return (
       <Aux>
         <Toolbar />
-        <Board />
+        <main className={classes.Content}>{this.props.children}</main>
       </Aux>
     );
   }

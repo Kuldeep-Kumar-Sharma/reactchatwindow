@@ -35,13 +35,13 @@ const playerReducer = (state = initialState, action) => {
             secound: state.currentPlayer.players.secound,
           },
           winner: action.winner,
-          allPlayers: [...state.allPlayers],
         },
+        allPlayers: [...state.allPlayers],
       };
     case actionTypes.ADD_TO_ALL_PLAYERS_AND_CLEAR_CURRENT_PLAYER:
       let updatedPlayers = state.allPlayers;
       updatedPlayers.push(state.currentPlayer);
-      return {
+      let stateUpdated = {
         currentPlayer: {
           ...state.currentPlayer,
           players: {
@@ -49,9 +49,11 @@ const playerReducer = (state = initialState, action) => {
             secound: "",
           },
           winner: "",
-          allPlayers: updatedPlayers,
         },
+        allPlayers: [...updatedPlayers],
       };
+      console.log(stateUpdated);
+      return stateUpdated;
     default:
       return state;
   }
