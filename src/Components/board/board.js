@@ -127,7 +127,6 @@ class Board extends Component {
     });
     if (this.checkWinner()) {
       this.props.onWinner(this.state.currentPlayer);
-      this.props.onEndGame();
       this.setState((prevState) => {
         return {
           ...prevState,
@@ -142,6 +141,7 @@ class Board extends Component {
   };
 
   onResetGame = () => {
+    this.props.onEndGame();
     this.setState((prevState) => {
       return {
         ...prevState,
@@ -170,6 +170,7 @@ class Board extends Component {
     ) : (
       ""
     );
+    console.log(this.props.allPlayers);
 
     return (
       <Aux>
@@ -180,14 +181,14 @@ class Board extends Component {
         />
         <WinnerModal
           show={this.state.finished}
-          winner={this.state.winner}
+          winner={this.props.winner}
           onResetGame={this.onResetGame}
         />
 
         <div className={classes.gameheader}>
           <p>Classic game for two players. O always starts.</p>
           <Button clicked={this.onStartGame}>Start the Game</Button>
-          <p className={classes.current}>{currentPlayer}</p>
+          <div className={classes.current}>{currentPlayer}</div>
         </div>
         <div
           className={classes.board}
@@ -219,7 +220,8 @@ class Board extends Component {
 const mapStateToProps = (state) => {
   return {
     players: state.currentPlayer.players,
-    winner: state.winner,
+    winner: state.currentPlayer.winner,
+    allPlayers: state.allPlayers,
   };
 };
 

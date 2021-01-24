@@ -5,14 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { BrowserRouter } from "react-router-dom";
 import playerReducer from "./store/reducers/players";
+
 const playerreducer = createStore(playerReducer);
 
 ReactDOM.render(
   <Provider store={playerreducer}>
-    <React.StrictMode>
+    <BrowserRouter>
       <App />
-    </React.StrictMode>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
