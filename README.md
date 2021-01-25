@@ -1,6 +1,6 @@
 # React Game of Tic tac toe
 
-Simple two player game build with React,Redux hooks.
+Simple two player game build with React,Redux.
 
 # Install
 
