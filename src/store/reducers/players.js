@@ -1,22 +1,23 @@
 import * as actionTypes from "../actions/actionTypes";
 
-let initialState = localStorage.getItem("persistant-state");
-console.log(initialState);
-if (initialState == null) {
-  initialState = {
-    allPlayers: [],
-    currentPlayer: {
-      players: {
-        first: "",
-        secound: "",
-      },
-      winner: "",
+// let initialState = localStorage.getItem("persistant-state");
+// console.log(initialState);
+// if (initialState === "undefined") {
+//console.log(initialState);
+
+let initialState = {
+  allPlayers: [],
+  currentPlayer: {
+    players: {
+      first: "",
+      secound: "",
     },
-  };
-}
+    winner: "",
+  },
+};
+//}
 
 const playerReducer = (state = initialState, action) => {
-  console.log(initialState);
   switch (action.type) {
     case actionTypes.INPUT_PLAYER_DETAILS:
       console.log(state.allPlayers);
