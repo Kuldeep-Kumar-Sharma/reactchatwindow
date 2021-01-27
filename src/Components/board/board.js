@@ -136,8 +136,6 @@ class Board extends Component {
         };
       });
     }
-
-    console.log(this.state.moves);
   };
 
   onResetGame = () => {
@@ -157,6 +155,15 @@ class Board extends Component {
     this.onStartGame();
   };
 
+  componentDidMount() {
+    console.log("-------------------------" + this.props.lastState());
+  }
+
+  componentWillUnmount() {
+    console.log("*****************" + this.props.lastState());
+    localStorage.setItem("persistant-state", this.props.lastState());
+  }
+
   render() {
     let boardMap = [];
     for (var i = 0; i < 9; i++) {
@@ -170,7 +177,6 @@ class Board extends Component {
     ) : (
       ""
     );
-    console.log(this.props.allPlayers);
 
     return (
       <Aux>
@@ -221,7 +227,6 @@ const mapStateToProps = (state) => {
   return {
     players: state.currentPlayer.players,
     winner: state.currentPlayer.winner,
-    allPlayers: state.allPlayers,
   };
 };
 
@@ -235,6 +240,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onEndGame: () => {
       dispatch(actions.addToAllPlayersAndClearCurrentPlayer());
+    },
+    lastState: () => {
+      dispatch(actions.lastStates());
     },
   };
 };

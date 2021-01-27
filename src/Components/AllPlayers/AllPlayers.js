@@ -11,10 +11,16 @@ class AllPlayers extends Component {
         {this.props.allPlayers.map((el, index) => (
           <div className={classes.card}>
             <div className={classes.container}>
-              <p>{el.currentPlayer.players.first}</p>
-              <p>{el.currentPlayer.players.secound}</p>
+              <p>
+                <b>Player 1: </b>
+                {el.players.first}
+              </p>
+              <p>
+                <b>Player 2: </b>
+                {el.players.secound}
+              </p>
               <h4>
-                <b>Winner : {el.currentPlayer.winner}</b>
+                <b>Winner : {el.winner}</b>
               </h4>
             </div>
           </div>
@@ -30,4 +36,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(AllPlayers);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    lastState: () => {
+      dispatch();
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(AllPlayers);

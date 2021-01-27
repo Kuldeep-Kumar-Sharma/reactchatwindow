@@ -23,3 +23,9 @@ export const addToAllPlayersAndClearCurrentPlayer = () => {
     type: actionTypes.ADD_TO_ALL_PLAYERS_AND_CLEAR_CURRENT_PLAYER,
   };
 };
+
+export const lastStates = () => {
+  return {
+    type: actionTypes.LAST_STATE,
+  };
+};
