@@ -12,6 +12,7 @@
   display: grid;
   grid-template: repeat(3, 100px) / repeat(3, 100px);
   grid-gap: 3px;
+  margin-top: 20px;
 }
 .field {
   background-color: #fff;

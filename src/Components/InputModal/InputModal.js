@@ -34,6 +34,7 @@ class InputModal extends Component {
         touched: false,
       },
     },
+    formIsValid: false,
   };
 
   checkValidity(value, rules) {
@@ -53,17 +54,6 @@ class InputModal extends Component {
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
     }
-
-    if (rules.isEmail) {
-      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-      isValid = pattern.test(value) && isValid;
-    }
-
-    if (rules.isNumeric) {
-      const pattern = /^\d+$/;
-      isValid = pattern.test(value) && isValid;
-    }
-
     return isValid;
   }
 
@@ -83,6 +73,7 @@ class InputModal extends Component {
     updatedOrderForm[inputIdentifier] = updatedFormElement;
 
     let formIsValid = true;
+    console.log(updatedOrderForm);
     for (let inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
     }
@@ -111,6 +102,7 @@ class InputModal extends Component {
           />
         ))}
         <Button
+          disabled={!this.state.formIsValid}
           clicked={() => {
             this.props.onPlayersAdded(this.state.playersForm);
             this.props.onClose();
