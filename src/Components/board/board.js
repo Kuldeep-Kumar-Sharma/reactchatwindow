@@ -23,14 +23,24 @@ class Board extends Component {
     this.setState({
       ...this.state,
       showPlayerInputModal: true,
-      started: true,
     });
   };
 
   onCapturePlayerDetailClose = () => {
-    this.setState({
-      showPlayerInputModal: false,
-    });
+    console.log(this.props.players);
+    if (this.props.players.first !== "" && this.props.players.secound !== "") {
+      this.setState({
+        ...this.state,
+        started: false,
+        showPlayerInputModal: false,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        started: false,
+        showPlayerInputModal: false,
+      });
+    }
   };
 
   checkWinner = () => {
@@ -154,15 +164,6 @@ class Board extends Component {
   onStartWarning = () => {
     this.onStartGame();
   };
-
-  componentDidMount() {
-    console.log("-------------------------" + this.props.lastState());
-  }
-
-  componentWillUnmount() {
-    console.log("*****************" + this.props.lastState());
-    localStorage.setItem("persistant-state", this.props.lastState());
-  }
 
   render() {
     let boardMap = [];
