@@ -26,12 +26,12 @@ class Board extends Component {
     });
   };
 
-  onCapturePlayerDetailClose = () => {
-    console.log(this.props.players);
-    if (this.props.players.first !== "" && this.props.players.secound !== "") {
+  onCapturePlayerDetailClose = (updatedState) => {
+    console.log(updatedState);
+    if (updatedState === "ADDED") {
       this.setState({
         ...this.state,
-        started: false,
+        started: true,
         showPlayerInputModal: false,
       });
     } else {
