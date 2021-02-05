@@ -73,7 +73,6 @@ class InputModal extends Component {
     updatedOrderForm[inputIdentifier] = updatedFormElement;
 
     let formIsValid = true;
-    console.log(updatedOrderForm);
     for (let inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
     }
@@ -105,12 +104,12 @@ class InputModal extends Component {
           disabled={!this.state.formIsValid}
           clicked={() => {
             this.props.onPlayersAdded(this.state.playersForm);
-            this.props.onClose();
+            this.props.onClose("ADDED");
           }}
         >
           Begin
         </Button>
-        <Button btnType="Danger" clicked={this.props.onClose}>
+        <Button btnType="Danger" clicked={() => this.props.onClose("")}>
           Close
         </Button>
       </Aux>
